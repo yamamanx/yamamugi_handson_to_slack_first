@@ -24,10 +24,16 @@ def lambda_handler(event, context):
     logger.setLevel(logging.INFO)
 
     try:
+        icon = event.get('icon',':question:')
+
         sendMessage(
-            u':hourglass_flowing_sand:申込がありました',
+            u':hourglass_flowing_sand:{icon}:申込がありました'.format(
+                icon=icon
+            ),
             '#general'
         )
+
+        return event
 
     except Exception as e:
         sendMessage(traceback.format_exc(), '#general')
