@@ -10,6 +10,7 @@ import traceback
 
 slack_url = os.environ['SLACK_URL']
 log_level = os.environ.get('LOG_LEVEL', 'INFO')
+channel = os.environ.get('CHANNEL', '#general')
 
 logger = logging.getLogger()
 
@@ -41,7 +42,7 @@ def lambda_handler(event, context):
             u':hourglass_flowing_sand:{icon}:申込がありました'.format(
                 icon=icon
             ),
-            '#general'
+            channel
         )
         return event
 
